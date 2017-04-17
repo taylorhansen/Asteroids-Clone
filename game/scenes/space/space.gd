@@ -57,6 +57,7 @@ func _game_over():
 	print("game over!")
 	player.queue_free()
 	get_node("asteroids").queue_free()
+	get_node("/root/global").goto_scene("res://gui/title/title.tscn")
 
 func _update_health():
 	get_node("health").set_text("Health: " + str(player.get_health()))
