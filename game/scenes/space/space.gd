@@ -53,11 +53,12 @@ func _spawn_asteroid_succeeded():
 		return false
 
 func _game_over():
-	_dead = true
 	print("game over!")
+	global.process_score(player.get_score())
+	_dead = true
 	player.queue_free()
 	get_node("asteroids").queue_free()
-	get_node("/root/global").goto_scene("res://gui/title/title.tscn")
+	global.goto_scene("res://gui/title/title.tscn")
 
 func _update_health():
 	get_node("health").set_text("Health: " + str(player.get_health()))
