@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://scenes/space/space.gd" type="Script" id=1]
+[ext_resource path="res://scenes/space/space.tex" type="Texture" id=2]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=3]
+
+[node name="space" type="Node2D"]
+
+script/script = ExtResource( 1 )
+max_asteroids = 15
+
+[node name="background" type="Sprite" parent="."]
+
+transform/pos = Vector2( 256, 256 )
+texture = ExtResource( 2 )
+
+[node name="player" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 256, 256 )
+
+[node name="asteroids" type="Node2D" parent="."]
+
+[node name="health" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 512.0
+margin/bottom = 14.0
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="score" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 512.0
+margin/bottom = 14.0
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+
