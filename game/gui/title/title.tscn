@@ -36,10 +36,12 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = -256.0
-margin/top = -192.0
+margin/top = -240.0
 margin/right = -128.0
-margin/bottom = -176.0
-text = "ASTEROIDS"
+margin/bottom = -192.0
+text = "ASTEROIDS
+CLONE
+(ish)"
 align = 1
 valign = 1
 percent_visible = 1.0
