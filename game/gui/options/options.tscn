@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://gui/options/options.gd" type="Script" id=1]
 [ext_resource path="res://gui/options/space.tex" type="Texture" id=2]
+[ext_resource path="res://gui/leaderboard/leaderboard.tscn" type="PackedScene" id=3]
 
 [node name="options" type="Node2D"]
 
@@ -45,5 +46,30 @@ enabled_focus_mode = 2
 shortcut = null
 text = "Clear data"
 flat = false
+
+[node name="label" type="Label" parent="."]
+
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 176.0
+margin/right = 256.0
+margin/bottom = 192.0
+text = "Leaderboard"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="leaderboard" parent="." instance=ExtResource( 3 )]
+
+margin/left = 16.0
+margin/top = 208.0
+margin/right = 496.0
+margin/bottom = 496.0
 
 
