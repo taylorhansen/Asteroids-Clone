@@ -15,6 +15,10 @@ func _exit_tree():
 func get_save_data():
 	return _save_data
 
+func clear_save_data():
+	_save_data = _DEFAULT_DATA
+	_store_save(_save_data)
+
 # switches the current scene to a new one
 func goto_scene(path):
 	# could be inside a callback or something like that, so defer until later
