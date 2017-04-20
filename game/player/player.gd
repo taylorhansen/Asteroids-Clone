@@ -8,13 +8,9 @@ export(int) var speed = 3
 export(int) var initial_health = 3
 var _just_shot_missile = true
 var _health = initial_health
-var _score = 0
 
 func get_health():
 	return _health
-
-func get_score():
-	return _score
 
 func get_hitbox_radius():
 	return get_node("hitbox").get_shape().get_radius()
@@ -94,5 +90,4 @@ func _spawn_missile():
 func _destroy_missile(missile, hit_asteroid = false):
 	missile.queue_free()
 	if (hit_asteroid):
-		_score += 10
 		emit_signal("update_score")

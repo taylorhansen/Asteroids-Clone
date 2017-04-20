@@ -1,6 +1,8 @@
 extends Node
 
-const _DEFAULT_DATA = {"high_score":0}
+const NEW_HIGH_SCORE = 1
+const MAX_LEADERBOARD_RECORDS = 3
+const _DEFAULT_DATA = {"leaderboard":[]}
 const _SAVE_PATH = "user://save.json"
 onready var _root = get_tree().get_root()
 onready var _current_scene = _root.get_child(_root.get_child_count() - 1)
@@ -10,20 +12,32 @@ func _ready():
 	pass
 
 func _exit_tree():
+	print(_save_data)
 	_store_save(_save_data)
 
-func get_save_data():
-	return _save_data
+func get_high_score():
+	if (not _save_data["leaderboard"].empty()):
+		return _save_data["leaderboard"][0]["score"]
+	return 0
+
+func get_leaderboard():
+	return _save_data["leaderboard"]
+
+func clear_save_data():
+	_save_data = _DEFAULT_DATA
+	_store_save(_save_data)
+
+func update_leaderboard(name, score):
+	# assumed that score is the new high score
+	var record = {"name":name, "score":score}
+	if (_save_data["leaderboard"].size() >= MAX_LEADERBOARD_RECORDS):
+		_save_data["leaderboard"].pop_back()
+	_save_data["leaderboard"].push_front(record)
 
 # switches the current scene to a new one
 func goto_scene(path):
 	# could be inside a callback or something like that, so defer until later
 	call_deferred("_deferred_goto_scene", path)
-
-# updates the high score if needed
-func process_score(score):
-	if (score > _save_data.high_score):
-		_save_data.high_score = score
 
 # loads the save from user data
 func _load_save():
