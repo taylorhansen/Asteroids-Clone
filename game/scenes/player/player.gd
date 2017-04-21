@@ -3,7 +3,7 @@ extends Area2D
 signal destroyed
 signal update_health
 signal update_score
-const MISSILE_SCENE = preload("res://missile/missile.tscn")
+const MISSILE_SCENE = preload("res://scenes/missile/missile.tscn")
 export(int) var speed = 3
 export(int) var initial_health = 3
 var _just_shot_missile = true
