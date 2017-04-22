@@ -23,7 +23,8 @@ script/script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-speed = 3
+thrust_speed = 3.0
+rot_speed = 4.71239
 initial_health = 3
 
 [node name="sprite" type="Sprite" parent="."]

@@ -4,7 +4,8 @@ signal destroyed
 signal update_health
 signal update_score
 const MISSILE_SCENE = preload("res://scenes/missile/missile.tscn")
-export(int) var speed = 3
+export(float) var thrust_speed = 3.0
+export(float) var rot_speed = 1.5 * PI # radians per second
 export(int) var initial_health = 3
 var _just_shot_missile = true
 var _health = initial_health
@@ -19,18 +20,10 @@ func _ready():
 	set_fixed_process(true)
 
 func _fixed_process(delta):
-	set_rot(_face_mouse())
-	var velocity = _process_input()
-	_update_pos(velocity)
+	_process_input(delta)
 	_check_collisions()
 
-# measure the angle (radians) between the player and the mouse
-func _face_mouse():
-	var mouse = get_viewport().get_mouse_pos()
-	var pos = get_pos()
-	return mouse.angle_to_point(pos)
-
-func _process_input():
+func _process_input(delta):
 	# possibly shoot a missile
 	if (Input.is_action_pressed("player_shoot")):
 		if (not _just_shot_missile):
@@ -38,26 +31,28 @@ func _process_input():
 			_just_shot_missile = true
 	else:
 		_just_shot_missile = false
-	# move according to input
-	var velocity = Vector2(0, 0)
+	# get input data
+	var thrust = 0
 	if (Input.is_action_pressed("player_up")):
-		velocity.y -= speed
+		thrust += thrust_speed
 	if (Input.is_action_pressed("player_down")):
-		velocity.y += speed
+		thrust -= thrust_speed
+	var rot = get_rot()
 	if (Input.is_action_pressed("player_left")):
-		velocity.x -= speed
+		rot += rot_speed * delta
 	if (Input.is_action_pressed("player_right")):
-		velocity.x += speed
-	return velocity
-
-func _update_pos(velocity):
+		rot -= rot_speed * delta
+	# update rotation
+	set_rot(rot)
+	# update position
+	var velocity = Vector2(sin(rot), cos(rot)) * thrust
 	var pos = get_pos()
 	var size = get_viewport_rect().size
 	var radius = get_hitbox_radius()
-	var new_x = int(pos.x + velocity.x) % int(size.x + radius)
+	var new_x = fmod(pos.x + velocity.x, size.x + radius)
 	if (new_x < 0):
 		new_x += size.x + radius
-	var new_y = int(pos.y + velocity.y) % int(size.y + radius)
+	var new_y = fmod(pos.y + velocity.y, size.y + radius)
 	if (new_y < 0):
 		new_y += size.y + radius
 	set_pos(Vector2(new_x, new_y))
