@@ -2,20 +2,20 @@ extends Area2D
 
 signal destroyed
 const HIT_ASTEROID = true
-export(Vector2) var velocity = Vector2(0, 0)
+export(float) var speed = 256.0 # pixels per second
 
 func _ready():
 	set_fixed_process(true)
 
 func _fixed_process(delta):
-	_move()
+	_move(delta)
 	_check_asteroids()
 	if (_is_out_of_bounds()):
 		emit_signal("destroyed", self)
 
-# moves according to the velocity
-func _move():
-	set_pos(get_pos() + velocity)
+# moves according to the speed
+func _move(delta):
+	move_local_y(speed * delta, true)
 
 # checks if it hit any asteroids
 func _check_asteroids():

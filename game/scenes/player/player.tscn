@@ -23,7 +23,7 @@ script/script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-thrust_speed = 3.0
+thrust_speed = 128.0
 rot_speed = 4.71239
 initial_health = 3
 
