@@ -1,4 +1,4 @@
-# Asteroids Clone (ish) v1.0
+# Asteroids Clone (ish) v1.1
 For the most part this is just a learning project for me into game development and getting used to the Godot game engine.
 
 ## Controls
