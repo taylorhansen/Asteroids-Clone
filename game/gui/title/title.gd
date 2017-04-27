@@ -6,7 +6,7 @@ func _ready():
 	get_node("options").connect("button_down", self, "_options")
 
 func _play():
-	global.goto_scene("res://scenes/space/space.tscn")
+	global.goto_scene("res://gui/space/space.tscn")
 
 func _options():
 	global.goto_scene("res://gui/options/options.tscn")

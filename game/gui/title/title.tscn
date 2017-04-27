@@ -1,16 +1,13 @@
 [gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://gui/title/title.gd" type="Script" id=1]
-[ext_resource path="res://gui/title/space.tex" type="Texture" id=2]
+[ext_resource path="res://gui/background/background.tscn" type="PackedScene" id=2]
 
 [node name="title" type="Node2D"]
 
 script/script = ExtResource( 1 )
 
-[node name="background" type="Sprite" parent="."]
-
-texture = ExtResource( 2 )
-centered = false
+[node name="background" parent="." instance=ExtResource( 2 )]
 
 [node name="play" type="Button" parent="."]
 

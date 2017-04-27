@@ -1,6 +1,6 @@
 extends Node2D
 
-const ASTEROID_SCENE = preload("res://asteroid/asteroid.tscn")
+const ASTEROID_SCENE = preload("res://scenes/asteroid/asteroid.tscn")
 const MAX_ASTEROID_SPEED = 5
 export(int) var max_asteroids = 0
 onready var player = get_node("player")
